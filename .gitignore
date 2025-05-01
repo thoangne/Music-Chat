@@ -1,35 +1,45 @@
-# Node.js
+# Node modules
 node_modules/
-npm-debug.log
-
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-
-# Java
-*.class
-*.jar
-*.war
-*.ear
-target/
-
-# macOS
-.DS_Store
-
-# Windows
-Thumbs.db
-ehthumbs.db
-
-# IDEs
-.vscode/
-.idea/
-*.sublime-workspace
-*.sublime-project
 
 # Logs
-logs/
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output
+dist/
+build/
 
 # Environment variables
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# React Native
+.expo/
+*.expo/
+
+# Other files
+package-lock.json
+yarn.lock
