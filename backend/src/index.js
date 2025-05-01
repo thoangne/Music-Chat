@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import { connectDB } from "./lib/db.js";
 import usersRouter from "./routes/user.route.js";
 import adminRouter from "./routes/admin.route.js";
 import statsRouter from "./routes/stats.route.js";
@@ -26,4 +27,5 @@ app.use("/api/stats", statsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  connectDB();
 });
