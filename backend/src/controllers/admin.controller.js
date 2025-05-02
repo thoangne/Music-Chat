@@ -1,6 +1,6 @@
-import Song from "../models/song.model";
-import Album from "../models/album.model";
-import cloudinary from "../lib/cloudinary";
+import Song from "../models/song.model.js";
+import Album from "../models/album.model.js";
+import cloudinary from "../lib/cloudinary.js";
 //helper function for cloudinary upload
 
 const uploadToCloudinary = async (file) => {
@@ -15,7 +15,7 @@ const uploadToCloudinary = async (file) => {
   }
 };
 
-export const createSong = async (req, res) => {
+export const createSong = async (req, res, next) => {
   try {
     if (!req.files || !req.files.audioFile || !req.files.imageFile) {
       return res.status(400).json({ message: "pls upload all files" });
@@ -50,7 +50,7 @@ export const createSong = async (req, res) => {
     next(error);
   }
 };
-export const deleteSong = async (req, res) => {
+export const deleteSong = async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -69,7 +69,7 @@ export const deleteSong = async (req, res) => {
     next(error);
   }
 };
-export const createAlbum = async (req, res) => {
+export const createAlbum = async (req, res, next) => {
   try {
     const { title, artist, releaseYear } = req.body;
     const { imageFile } = req.files;
@@ -88,7 +88,7 @@ export const createAlbum = async (req, res) => {
   }
 };
 
-export const deteleAlbum = async (req, res) => {
+export const deleteAlbum = async (req, res, next) => {
   try {
     const { id } = req.params;
 

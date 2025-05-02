@@ -1,17 +1,11 @@
 import { Router } from "express";
+import { protectRoute } from "../middlewares/auth.middleware.js";
+import { getAllUsers } from "../controllers/user.controller.js";
 import dotenv from "dotenv";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  req.auth.userId;
-  res.send("User route is working");
-});
-router.post("/", (req, res) => {
-  res.send("User route is working");
-});
-router.delete("/", (req, res) => {
-  res.send("User route is working");
-});
+router.get("/", protectRoute, getAllUsers);
+//todo: getmessage
 
 export default router;
