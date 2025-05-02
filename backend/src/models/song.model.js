@@ -15,10 +15,6 @@ const songSchema = new mongoose.Schema(
       required: true,
     },
 
-    album: {
-      type: String,
-      required: true,
-    },
     audioUrl: {
       type: String,
       required: true,
@@ -27,10 +23,6 @@ const songSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Album",
       required: false,
-    },
-    releaseDate: {
-      type: Date,
-      required: true,
     },
     duration: {
       type: Number,
