@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { ClerkProvider } from "@clerk/clerk-react";
-import AuthProvider from "../providers/AuthProvider.tsx";
+import AuthProvider from "./providers/AuthProvider.tsx";
 import "./index.css"; // 👈 Tailwind import
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 

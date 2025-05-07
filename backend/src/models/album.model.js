@@ -12,7 +12,6 @@ const albumSchema = new mongoose.Schema(
     },
     imageURL: {
       type: String,
-      required: false,
     },
     releaseDate: {
       type: Date,

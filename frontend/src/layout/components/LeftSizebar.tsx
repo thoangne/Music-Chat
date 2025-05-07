@@ -12,7 +12,6 @@ const LeftSizebar = () => {
   useEffect(() => {
     fetchAlbums();
   }, [fetchAlbums]);
-  console.log({ albums }, "in leftsidebar");
   return (
     <div className="h-full flex flex-col gap-2">
       {/*Navigate */}

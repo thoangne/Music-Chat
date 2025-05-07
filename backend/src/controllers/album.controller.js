@@ -21,6 +21,7 @@ export const getAlbumById = async (req, res, next) => {
     }
     return res.status(200).json(albums);
   } catch (error) {
+    console.log(error);
     console.log("ERROR at album");
   }
 };
