@@ -32,14 +32,6 @@ npm install
 # 3. Khởi động ứng dụng
 npm run dev
 ```
-SpotifyClone/
-├── components/      # Các component tái sử dụng
-├── pages/           # Các trang chính (Next.js routing)
-├── public/          # Ảnh, icon, tài nguyên tĩnh
-├── styles/          # File Tailwind CSS và các style khác
-├── stores/          # Trạng thái toàn cục (Zustand)
-├── types/           # Kiểu dữ liệu TypeScript
-├── utils/           # Tiện ích hỗ trợ
-└── ...
+
 📷 ./public/screenshots/home.png
 📷 ./public/screenshots/player.png
