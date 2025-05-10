@@ -28,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(clerkMiddleware());
 app.use(
   fileUpload({
+    useTempFiles: true,
     tempFileDir: path.join(__dirname, "tmp"),
     createParentPath: true,
     limits: {

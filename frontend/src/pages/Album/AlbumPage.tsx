@@ -19,7 +19,7 @@ const AlbumPage = () => {
     if (albumId) fetchAlbumsId(albumId);
   }, [fetchAlbumsId, albumId]);
   if (isLoading) return null;
-
+  console.log(currentAlbum);
   //logic play album
   const handlePlayAlbum = () => {
     const isCurrentAlbumPlayin = currentAlbum?.songs.some(

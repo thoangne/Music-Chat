@@ -1,8 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { formatDuration } from "@/pages/Album/AlbumPage";
-import { usePlayerStore } from "@/stores/usePlayerStore";
 import { Slider } from "@/components/ui/slider";
+import { usePlayerStore } from "@/stores/usePlayerStore";
 import {
   Laptop2,
   ListMusic,
@@ -15,11 +13,17 @@ import {
   SkipForward,
   Volume1,
 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-const PlayBackControls = () => {
-  const { currentSong, isPlaying, togglePlay, playNext, playPrevious } =
+const formatTime = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+};
+
+export const PlayBackControls = () => {
+  const { currentSong, togglePlay, isPlaying, playNext, playPrevious } =
     usePlayerStore();
-
   const [volume, setVolume] = useState(75);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -27,26 +31,32 @@ const PlayBackControls = () => {
 
   useEffect(() => {
     audioRef.current = document.querySelector("audio");
+
     const audio = audioRef.current;
     if (!audio) return;
 
     const updateTime = () => setCurrentTime(audio.currentTime);
     const updateDuration = () => setDuration(audio.duration);
-    const handleEnded = () => {
-      usePlayerStore.setState({ isPlaying: false });
-    };
 
     audio.addEventListener("timeupdate", updateTime);
     audio.addEventListener("loadedmetadata", updateDuration);
-    audio.addEventListener("ended", handleEnded);
 
+    const handleEnded = () => {
+      usePlayerStore.setState({ isPlaying: false });
+    };
+    if (isPlaying) {
+      audio.play().catch(console.error);
+    } else {
+      audio.pause();
+    }
+
+    audio.addEventListener("ended", handleEnded);
     return () => {
       audio.removeEventListener("timeupdate", updateTime);
       audio.removeEventListener("loadedmetadata", updateDuration);
       audio.removeEventListener("ended", handleEnded);
     };
-  }, [currentSong]);
-
+  }, [currentSong, isPlaying]);
   const handleSeek = (value: number[]) => {
     if (audioRef.current) {
       audioRef.current.currentTime = value[0];
@@ -54,9 +64,9 @@ const PlayBackControls = () => {
   };
 
   return (
-    <footer className="h-full sm:h-2/4 bg-zinc-900 border-t border-zinc-800 px-4">
+    <footer className="h-20 sm:h-24 bg-zinc-900 border-t border-zinc-800 px-4">
       <div className="flex justify-between items-center h-full max-w-[1800px] mx-auto">
-        {/* Current Song Info */}
+        {/* currently playing song */}
         <div className="hidden sm:flex items-center gap-4 min-w-[180px] w-[30%]">
           {currentSong && (
             <>
@@ -77,7 +87,7 @@ const PlayBackControls = () => {
           )}
         </div>
 
-        {/* Playback Controls */}
+        {/* player controls*/}
         <div className="flex flex-col items-center gap-2 flex-1 max-w-full sm:max-w-[45%]">
           <div className="flex items-center gap-4 sm:gap-6">
             <Button
@@ -87,6 +97,7 @@ const PlayBackControls = () => {
             >
               <Shuffle className="h-4 w-4" />
             </Button>
+
             <Button
               size="icon"
               variant="ghost"
@@ -96,10 +107,11 @@ const PlayBackControls = () => {
             >
               <SkipBack className="h-4 w-4" />
             </Button>
+
             <Button
               size="icon"
+              className="bg-green-500 hover:bg-green-600 text-white rounded-full h-8 w-8"
               onClick={togglePlay}
-              className="hover:text-white text-black rounded-full h-8 w-8"
               disabled={!currentSong}
             >
               {isPlaying ? (
@@ -120,37 +132,32 @@ const PlayBackControls = () => {
             <Button
               size="icon"
               variant="ghost"
-              className="hover:text-white text-zinc-400"
-              disabled={!currentSong}
+              className="hidden sm:inline-flex hover:text-white text-zinc-400"
             >
               <Repeat className="h-4 w-4" />
             </Button>
           </div>
 
-          {/* Progress Bar */}
-          <div className="hidden sm:flex items-center w-full gap-2">
+          <div className="hidden sm:flex items-center gap-2 w-full">
             <div className="text-xs text-zinc-400">
-              {formatDuration(currentTime)}
+              {formatTime(currentTime)}
             </div>
             <Slider
               value={[currentTime]}
               max={duration || 100}
               step={1}
-              onValueChange={handleSeek}
               className="w-full hover:cursor-grab active:cursor-grabbing"
+              onValueChange={handleSeek}
             />
-            <div className="text-xs text-zinc-400">
-              {formatDuration(duration)}
-            </div>
+            <div className="text-xs text-zinc-400">{formatTime(duration)}</div>
           </div>
         </div>
-
-        {/* Volume & Options */}
+        {/* volume controls */}
         <div className="hidden sm:flex items-center gap-4 min-w-[180px] w-[30%] justify-end">
           <Button
             size="icon"
             variant="ghost"
-            className="hover:text-white text-zinc-400"
+            className="hover:text-white  text-zinc-400"
           >
             <Mic2 className="h-4 w-4" />
           </Button>
@@ -169,26 +176,26 @@ const PlayBackControls = () => {
             <Laptop2 className="h-4 w-4" />
           </Button>
 
-          {/* Volume Slider */}
           <div className="flex items-center gap-2">
             <Button
               size="icon"
               variant="ghost"
-              className="hover:text-white text-zinc-400"
+              className="hover:text-white  text-zinc-400"
             >
               <Volume1 className="h-4 w-4" />
             </Button>
+
             <Slider
               value={[volume]}
               max={100}
               step={1}
+              className="w-24   hover:cursor-grab active:cursor-grabbing"
               onValueChange={(value) => {
                 setVolume(value[0]);
                 if (audioRef.current) {
                   audioRef.current.volume = value[0] / 100;
                 }
               }}
-              className="w-24 hover:cursor-grab active:cursor-grabbing"
             />
           </div>
         </div>
@@ -196,5 +203,3 @@ const PlayBackControls = () => {
     </footer>
   );
 };
-
-export default PlayBackControls;

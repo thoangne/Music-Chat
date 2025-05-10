@@ -12,7 +12,6 @@ import { useAuthStore } from "@/stores/useAuthStore";
 
 const Topbar = () => {
   const isAdmin = useAuthStore((state) => state.isAdmin);
-  console.log(isAdmin);
   return (
     <div className="backdrop-blur-md z-10 flex items-center justify-between p-4 sticky top-0 bg-zinc-900/75 shadow-md">
       <div className="flex gap-2 items-center text-white font-bold text-xl">
