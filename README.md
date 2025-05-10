@@ -31,7 +31,7 @@ npm install
 
 # 3. Khởi động ứng dụng
 npm run dev
-
+```
 SpotifyClone/
 ├── components/      # Các component tái sử dụng
 ├── pages/           # Các trang chính (Next.js routing)
