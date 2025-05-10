@@ -12,12 +12,6 @@ const songSchema = new mongoose.Schema(
     },
     imageUrl: {
       type: String,
-      required: true,
-    },
-
-    album: {
-      type: String,
-      required: true,
     },
     audioUrl: {
       type: String,
@@ -27,10 +21,6 @@ const songSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Album",
       required: false,
-    },
-    releaseDate: {
-      type: Date,
-      required: true,
     },
     duration: {
       type: Number,

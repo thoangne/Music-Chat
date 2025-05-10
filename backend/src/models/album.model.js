@@ -12,11 +12,10 @@ const albumSchema = new mongoose.Schema(
     },
     imageURL: {
       type: String,
-      required: true,
     },
     releaseDate: {
       type: Date,
-      required: true,
+      required: false,
     },
     songs: [
       {

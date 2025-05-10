@@ -2,8 +2,22 @@ import Song from "../models/song.model.js";
 import Album from "../models/album.model.js";
 import cloudinary from "../lib/cloudinary.js";
 //helper function for cloudinary upload
+import * as mm from "music-metadata";
+import fs from "fs";
+
+const getAudioDuration = async (filePath) => {
+  try {
+    const metadata = await mm.parseFile(filePath);
+    console.log(metadata);
+    return metadata.format.duration;
+  } catch (err) {
+    console.error("Error reading metadata", err);
+    return null;
+  }
+};
 
 const uploadToCloudinary = async (file) => {
+  console.log("Temp file path:", file.tempFilePath);
   try {
     const result = await cloudinary.uploader.upload(file.tempFilePath, {
       resource_type: "auto",
@@ -20,13 +34,13 @@ export const createSong = async (req, res, next) => {
     if (!req.files || !req.files.audioFile || !req.files.imageFile) {
       return res.status(400).json({ message: "pls upload all files" });
     }
-    const { title, artist, albumId, duration } = req.body;
+    const { title, artist, albumId } = req.body;
     const audioFile = req.files.audioFile;
     const imageFile = req.files.imageFile;
 
     const audioUrl = await uploadToCloudinary(audioFile);
     const imageUrl = await uploadToCloudinary(imageFile);
-
+    const duration = await getAudioDuration(audioFile.tempFilePath);
     const song = new Song({
       title,
       artist,
@@ -72,7 +86,9 @@ export const deleteSong = async (req, res, next) => {
 export const createAlbum = async (req, res, next) => {
   try {
     const { title, artist, releaseYear } = req.body;
-    const { imageFile } = req.files;
+    console.log(title, artist, releaseYear, "admin");
+    const imageFile = req.files.imageFile;
+    console.log(imageFile, "admin");
     const imageUrl = await uploadToCloudinary(imageFile);
     const album = new Album({
       title,
@@ -80,6 +96,7 @@ export const createAlbum = async (req, res, next) => {
       imageUrl,
       releaseYear,
     });
+    console.log(album, "admin khi upload");
     await album.save();
     res.status(201).json(album);
   } catch (error) {

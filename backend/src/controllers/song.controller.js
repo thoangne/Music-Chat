@@ -49,6 +49,7 @@ export const getMadeForYouSongs = async (req, res, next) => {
       },
     ]);
     res.json(songs);
+    console.log(songs, "made for you");
   } catch (error) {
     next(error);
   }
