@@ -5,7 +5,8 @@ import dotenv from "dotenv";
 
 const router = Router();
 
-router.get("/", protectRoute, getAllUsers);
+// router.get("/", protectRoute, getAllUsers);
+router.get("/", getAllUsers);
 //todo: getmessage
 
 export default router;

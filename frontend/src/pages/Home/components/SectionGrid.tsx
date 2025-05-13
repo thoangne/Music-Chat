@@ -11,6 +11,7 @@ type SectionGridProps = {
 
 const SectionGrid = ({ title, songs, isLoading }: SectionGridProps) => {
   if (isLoading) return <SectionGridSkeleton />;
+  console.log(isLoading, "skeleton");
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between  m-4">
@@ -24,7 +25,7 @@ const SectionGrid = ({ title, songs, isLoading }: SectionGridProps) => {
         {songs.map((song) => (
           <div
             key={song._id}
-            className="bg-zinc-800/40 p-4 rounded-md animate-pulse transition-all
+            className="bg-zinc-800/40 p-4 rounded-md  transition-all
             group cursor-pointer hover:bg-zinc-700
             "
           >
