@@ -22,3 +22,11 @@ export interface Album{
     updatedAt: Date;
     
 }
+
+export interface Stats{
+    totalUsers: number;
+    totalAlbums: number;
+    totalSongs: number;
+    totalViews: number;
+    totalArtists: number;
+}

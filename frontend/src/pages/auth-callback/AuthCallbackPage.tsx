@@ -12,7 +12,6 @@ const AuthCallbackPage = () => {
     const syncUser = async () => {
       if (!isLoaded || !user) return;
       try {
-        console.log(user, "user in callback page");
         syncAttempted.current = true;
         await AxiosInstance.post("/auth/callback", {
           id: user.id,

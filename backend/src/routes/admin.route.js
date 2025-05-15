@@ -9,7 +9,7 @@ import {
 import { requireAdmin, protectRoute } from "../middlewares/auth.middleware.js";
 const router = Router();
 
-// router.use(protectRoute, requireAdmin);
+router.use(protectRoute, requireAdmin);
 router.get("/check", checkAdmin);
 
 router.post("/songs", createSong);

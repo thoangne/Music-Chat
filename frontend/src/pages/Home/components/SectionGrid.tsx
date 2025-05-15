@@ -11,7 +11,6 @@ type SectionGridProps = {
 
 const SectionGrid = ({ title, songs, isLoading }: SectionGridProps) => {
   if (isLoading) return <SectionGridSkeleton />;
-  console.log(isLoading, "skeleton");
   return (
     <div className="mb-8">
       <div className="flex items-center justify-between  m-4">

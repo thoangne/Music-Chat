@@ -3,7 +3,6 @@ import User from "../models/user.model.js";
 export const callback = async (req, res) => {
   try {
     const { id, firstName, lastName, imageUrl } = req.body;
-    console.log(req.body, "callback backend");
 
     let user = await User.findOne({ clerkId: id });
     if (!user) {
