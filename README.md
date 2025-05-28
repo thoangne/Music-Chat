@@ -18,11 +18,11 @@ Người dùng có thể nghe nhạc, khám phá album và xem bạn bè đang n
 
 ## 🛠️ Công nghệ sử dụng
 
-- **Frontend**: React, Zustand, Tailwind CSS, Clerk (xác thực), Lucide Icons.
+- **Frontend**: React, Zustand, Tailwind CSS, Clerk (xác thực), Lucide Icons,Shadcn.
 - **Backend**: Node.js, Express, MongoDB.
 - **Realtime**: Socket.io.
 - **Xác thực**: Clerk.
-- **Triển khai**: Vercel (frontend), Render hoặc Railway (backend).
+- **Triển khai**:  Render.
 
 ---
 
