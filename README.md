@@ -40,19 +40,17 @@ Người dùng có thể nghe nhạc, khám phá album và xem bạn bè đang n
 
 ### 1. Clone dự án
 
-```bash
+```
 git clone https://github.com/thoangne/Music-Chat.git
-cd Music-Chat
+cd Music-Chat```
 ### 2. Cài đặt frontend
 ```
 cd frontend
 npm install  ```
 ### 3. Cài đặt backend
-bash
-Sao chép
-Chỉnh sửa
+```
 cd ../backend
-npm install
+npm install ```
 ### 4. Cấu hình biến môi trường
 Tạo file .env trong thư mục backend với nội dung:
 ```
