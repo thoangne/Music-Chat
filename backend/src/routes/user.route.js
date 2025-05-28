@@ -1,12 +1,9 @@
 import { Router } from "express";
 import { protectRoute } from "../middlewares/auth.middleware.js";
-import { getAllUsers } from "../controllers/user.controller.js";
-import dotenv from "dotenv";
-
+import { getAllUsers, getMessages } from "../controllers/user.controller.js";
 const router = Router();
 
-// router.get("/", protectRoute, getAllUsers);
 router.get("/", getAllUsers);
-//todo: getmessage
+router.get("/messages/:userId", protectRoute, getMessages);
 
 export default router;

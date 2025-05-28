@@ -1,5 +1,8 @@
 import express from "express";
 import cors from "cors";
+import { createServer } from "http";
+import { initializeSocket } from "./lib/socket.js";
+
 import mongoose from "mongoose";
 import { connectDB } from "./lib/db.js";
 import usersRouter from "./routes/user.route.js";
@@ -16,7 +19,8 @@ dotenv.config();
 const __dirname = path.resolve();
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+const httpServer = createServer(app);
+initializeSocket(httpServer);
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -54,7 +58,7 @@ app.use((err, req, res, next) => {
 });
 
 //todo: socket.io
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   connectDB();
 });

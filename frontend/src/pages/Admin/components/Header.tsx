@@ -7,7 +7,7 @@ const Header = () => {
     <div className="flex items-center justify-between mb-8">
       <div className="flex items-center gap-3 mb-8">
         <Link to="/" className="rounded-lg">
-          <img src="./spotify.png" alt="logo" className="size-10 text-black" />
+          <img src="./logo.png" alt="logo" className="size-20 text-black" />
         </Link>
         <div>
           <h1 className="text-3xl font-bold">Music Manager</h1>

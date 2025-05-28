@@ -1,20 +1,7 @@
-import Song from "../models/song.model.js";
-import Album from "../models/album.model.js";
 import cloudinary from "../lib/cloudinary.js";
-//helper function for cloudinary upload
-import * as mm from "music-metadata";
-import fs from "fs";
-
-const getAudioDuration = async (filePath) => {
-  try {
-    const metadata = await mm.parseFile(filePath);
-    return metadata.format.duration;
-  } catch (err) {
-    console.error("Error reading metadata", err);
-    return null;
-  }
-};
-
+import Album from "../models/album.model.js";
+import Song from "../models/song.model.js";
+// helper function for cloudinary uploads
 const uploadToCloudinary = async (file) => {
   try {
     const result = await cloudinary.uploader.upload(file.tempFilePath, {
@@ -23,24 +10,23 @@ const uploadToCloudinary = async (file) => {
     return result.secure_url;
   } catch (error) {
     console.log("Error in uploadToCloudinary", error);
-    throw new Error(error);
+    throw new Error("Error uploading to cloudinary");
   }
 };
 
 export const createSong = async (req, res, next) => {
   try {
-    console.log(req.files.image);
-    console.log(req.files.audio);
-    if (!req.files) {
-      return res.status(400).json({ message: "pls upload all files" });
+    if (!req.files || !req.files.audioFile || !req.files.imageFile) {
+      return res.status(400).json({ message: "Please upload all files" });
     }
-    const { title, artist, albumId } = req.body;
-    const audioFile = req.files.audio;
-    const imageFile = req.files.image;
+
+    const { title, artist, albumId, duration } = req.body;
+    const audioFile = req.files.audioFile;
+    const imageFile = req.files.imageFile;
 
     const audioUrl = await uploadToCloudinary(audioFile);
     const imageUrl = await uploadToCloudinary(imageFile);
-    const duration = await getAudioDuration(audioFile.tempFilePath);
+
     const song = new Song({
       title,
       artist,
@@ -51,29 +37,27 @@ export const createSong = async (req, res, next) => {
     });
 
     await song.save();
-    //if song belongs to an album, update the album songs array
+
+    // if song belongs to an album, update the album's songs array
     if (albumId) {
       await Album.findByIdAndUpdate(albumId, {
         $push: { songs: song._id },
       });
     }
-
     res.status(201).json(song);
   } catch (error) {
-    console.log("Error in create song", error);
+    console.log("Error in createSong", error);
     next(error);
   }
 };
+
 export const deleteSong = async (req, res, next) => {
   try {
     const { id } = req.params;
 
     const song = await Song.findById(id);
 
-    if (!song) {
-      return res.status(404).json({ message: "Song not found" });
-    }
-
+    // if song belongs to an album, update the album's songs array
     if (song.albumId) {
       await Album.findByIdAndUpdate(song.albumId, {
         $pull: { songs: song._id },
@@ -82,26 +66,29 @@ export const deleteSong = async (req, res, next) => {
 
     await Song.findByIdAndDelete(id);
 
-    console.log("Song deleted successfully");
     res.status(200).json({ message: "Song deleted successfully" });
   } catch (error) {
     console.log("Error in deleteSong", error);
     next(error);
   }
 };
+
 export const createAlbum = async (req, res, next) => {
   try {
     const { title, artist, releaseYear } = req.body;
-    const imageFile = req.files.imageFile;
+    const { imageFile } = req.files;
+
     const imageUrl = await uploadToCloudinary(imageFile);
+
     const album = new Album({
       title,
       artist,
       imageUrl,
       releaseYear,
     });
-    console.log(album, "saved");
+
     await album.save();
+
     res.status(201).json(album);
   } catch (error) {
     console.log("Error in createAlbum", error);
@@ -112,18 +99,8 @@ export const createAlbum = async (req, res, next) => {
 export const deleteAlbum = async (req, res, next) => {
   try {
     const { id } = req.params;
-
-    // Xóa tất cả bài hát thuộc album
     await Song.deleteMany({ albumId: id });
-
-    // Xóa album
-    const deletedAlbum = await Album.findByIdAndDelete(id);
-
-    if (!deletedAlbum) {
-      return res.status(404).json({ message: "Album not found" });
-    }
-
-    console.log("Album deleted successfully");
+    await Album.findByIdAndDelete(id);
     res.status(200).json({ message: "Album deleted successfully" });
   } catch (error) {
     console.log("Error in deleteAlbum", error);

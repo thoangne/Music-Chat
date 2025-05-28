@@ -10,7 +10,7 @@ const messageSchema = new mongoose.Schema(
       type: String, // Clerk ID
       required: true,
     },
-    text: {
+    content: {
       type: String,
       required: true,
     },
