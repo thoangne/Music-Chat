@@ -42,7 +42,8 @@ Người dùng có thể nghe nhạc, khám phá album và xem bạn bè đang n
 
 ```
 git clone https://github.com/thoangne/Music-Chat.git
-cd Music-Chat ```
+cd Music-Chat
+ ```
 ### 2. Cài đặt frontend
 ```
 cd frontend
