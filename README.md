@@ -43,11 +43,12 @@ Người dùng có thể nghe nhạc, khám phá album và xem bạn bè đang n
 ```
 git clone https://github.com/thoangne/Music-Chat.git
 cd Music-Chat
- ```
+```
 ### 2. Cài đặt frontend
 ```
 cd frontend
-npm install  ```
+npm install
+```
 ### 3. Cài đặt backend
 ```
 cd ../backend
@@ -63,10 +64,12 @@ CLERK_SECRET_KEY=your_clerk_secret_key
 ### 5. Chạy ứng dụng
 Backend (trong thư mục backend):
 ```
-npm run dev ```
+npm run dev
+```
 Frontend (trong thư mục frontend):
 ```
-npm run dev ```
+npm run dev
+```
 ## 📌 Ghi chú
 Đảm bảo đã cài đặt Node.js và MongoDB trên máy.
 
