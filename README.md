@@ -78,7 +78,7 @@ Sử dụng Clerk để quản lý xác thực người dùng.
 Ứng dụng hỗ trợ responsive và dark mode.
 
 ## 📄 Giấy phép
-Dự án được phát hành dưới giấy phép MIT.
+
 ```
 Lưu ý: Dự án này được xây dựng với mục đích học tập và không nhằm mục đích thương mại.
 ```
