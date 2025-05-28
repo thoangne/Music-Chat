@@ -28,7 +28,7 @@ Người dùng có thể nghe nhạc, khám phá album và xem bạn bè đang n
 
 ## 📸 Giao diện
 
-> *(Thêm ảnh chụp màn hình vào thư mục `screenshots/` và cập nhật tên file tương ứng)*
+
 
 ![Giao diện chính](./screenshots/home.png)  
 ![Hoạt động bạn bè](./screenshots/friends-activity.png)  
@@ -42,7 +42,7 @@ Người dùng có thể nghe nhạc, khám phá album và xem bạn bè đang n
 
 ```
 git clone https://github.com/thoangne/Music-Chat.git
-cd Music-Chat```
+cd Music-Chat ```
 ### 2. Cài đặt frontend
 ```
 cd frontend
@@ -50,17 +50,19 @@ npm install  ```
 ### 3. Cài đặt backend
 ```
 cd ../backend
-npm install ```
+npm install
+ ```
 ### 4. Cấu hình biến môi trường
 Tạo file .env trong thư mục backend với nội dung:
 ```
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
-CLERK_SECRET_KEY=your_clerk_secret_key ```
+CLERK_SECRET_KEY=your_clerk_secret_key
+ ```
 ### 5. Chạy ứng dụng
 Backend (trong thư mục backend):
 ```
-npm run dev```
+npm run dev ```
 Frontend (trong thư mục frontend):
 ```
 npm run dev ```
