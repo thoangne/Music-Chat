@@ -30,9 +30,10 @@ Người dùng có thể nghe nhạc, khám phá album và xem bạn bè đang n
 
 
 
-![Giao diện chính](./screenshots/home.png)  
-![Hoạt động bạn bè](./screenshots/friends-activity.png)  
-![Album chi tiết](./screenshots/album.png)
+![Giao diện chính](./screenshots/1.png)  
+![Hoạt động bạn bè](./screenshots/2.png)  
+![Album chi tiết](./screenshots/3.png)
+![Admin dashboard](./screenshots/4.png)
 
 ---
 
