@@ -1,6 +1,5 @@
-# 🎧 Music Chat – Spotify Clone with Real-Time Social Features
-
-**Music Chat** là một ứng dụng web mô phỏng Spotify, kết hợp tính năng phát nhạc với trò chuyện thời gian thực.  
+# 🎧 Music Chat
+**Music Chat** là một ứng dụng web có tính năng phát nhạc với trò chuyện thời gian thực.  
 Người dùng có thể nghe nhạc, khám phá album và xem bạn bè đang nghe gì – tất cả trong một giao diện hiện đại và thân thiện.
 
 ---
