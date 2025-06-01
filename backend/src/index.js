@@ -41,12 +41,6 @@ app.use(
     },
   })
 );
-app._router.stack.forEach((r) => {
-  if (r.route && r.route.path) {
-    console.log("Registered route:", r.route.path);
-  }
-});
-
 //cron jobs
 const tempDir = path.join(process.cwd(), "tmp");
 //delete those files in every hours
