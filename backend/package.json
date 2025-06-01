@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/index.js",
+    "start": "node ./src/index.js",
     "seed:songs": "node src/seeds/songs.js",
     "seed:albums": "node src/seeds/albums.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,6 +24,7 @@
     "fs": "^0.0.1-security",
     "mongoose": "^8.14.1",
     "music-metadata": "^11.2.1",
+    "node-cron": "^4.1.0",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {

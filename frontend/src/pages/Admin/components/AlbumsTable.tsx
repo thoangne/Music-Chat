@@ -65,7 +65,7 @@ const AlbumsTable = () => {
                 {albums.find((album) => album._id === album._id)?.title || "—"}{" "}
               </TableCell>
               <TableCell className="text-zinc-400">
-                {album.updatedAt.toString().split("T")[0] || "—"}
+                {album.releaseYear.toString().split("T")[0] || "—"}
               </TableCell>
               <TableCell className="text-zinc-400">
                 {album.songs.length || "—"}

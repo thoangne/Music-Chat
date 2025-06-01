@@ -22,12 +22,12 @@ const FriendsActivity = () => {
           <h2 className="font-semibold">What they're listening to</h2>
         </div>
       </div>
-      {/* <div className="flex items-center gap-2 ml-auto mt-4">
+      <div className="flex items-center gap-2 ml-auto mt-4">
         <button
           onClick={() => setShowOnlyOnline((prev) => !prev)}
           className={`text-xs px-2 py-1 rounded-md border ${
             showOnlyOnline
-              ? "bg-green-600 text-white border-green-700"
+              ? "bg-yellow-600 text-white border-green-700"
               : "text-zinc-300 border-zinc-700 hover:bg-zinc-800"
           }`}
         >
@@ -37,13 +37,13 @@ const FriendsActivity = () => {
           onClick={() => setShowOnlyListening((prev) => !prev)}
           className={`text-xs px-2 py-1 rounded-md border ${
             showOnlyListening
-              ? "bg-emerald-600 text-white border-emerald-700"
+              ? "bg-yellow-600 text-white border-emerald-700"
               : "text-zinc-300 border-zinc-700 hover:bg-zinc-800"
           }`}
         >
           Listening
         </button>
-      </div> */}
+      </div>
 
       {!user && <LoginPrompt />}
 

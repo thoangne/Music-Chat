@@ -1,5 +1,5 @@
 import { useMusicStore } from "@/stores/useMusicStore";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Button } from "@/components/ui/button";

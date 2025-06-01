@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/stores/useAuthStore";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Header from "./components/Header";
 import DashboardStats from "./components/DashboardStats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";

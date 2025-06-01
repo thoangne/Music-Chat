@@ -6,7 +6,6 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Music } from "lucide-react";
-import React from "react";
 import SongsTable from "./SongsTable";
 import AddSongDialog from "./AddSongDialog";
 
