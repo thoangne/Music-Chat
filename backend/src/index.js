@@ -46,7 +46,7 @@ app.use(
 const tempDir = path.join(process.cwd(), "tmp");
 //delete those files in every hours
 cron.schedule("0 * * * *", () => {
-  if (fs.exitstsync(tempDir)) {
+  if (fs.existsSync(tempDir)) {
     fs.readdir(tempDir, (err, files) => {
       if (err) {
         console.log(err, "error");
@@ -73,7 +73,7 @@ app.use("/api/stats", statsRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
-  app.get("*", (req, res) => {
+  app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
